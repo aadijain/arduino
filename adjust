@@ -1,0 +1,20 @@
+int sensor = 0;
+int led = 11;
+
+void setup() {
+  analogReference(DEFAULT);  
+  Serial.begin(9600);
+  pinMode(led,OUTPUT);
+}
+
+void loop() {
+  Serial.println(analogRead(sensor));  
+  //delay(50);
+  
+  int val= analogRead(sensor);
+  
+  val=constrain(val,100,300);
+  int level = map(val,100,300,255,0);
+  
+  analogWrite(led,level);
+}
